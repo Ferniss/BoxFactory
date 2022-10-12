@@ -9,6 +9,10 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+builder.Services.AddDbContext<ProductDbContext>(options => options.UseSqlite(
+    "Data source=db.db"
+    ));
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
