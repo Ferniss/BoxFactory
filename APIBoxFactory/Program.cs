@@ -19,7 +19,7 @@ builder.Services.AddDbContext<ProductDbContext>(options => options.UseSqlite(
 ));
 
 
-MediaTypeNames.Application.DependencyResolver
+Application.DependencyResolver
     .DependencyResolverService
     .RegisterApplicationLayer(builder.Services);
 

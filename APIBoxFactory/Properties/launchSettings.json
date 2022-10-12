@@ -12,8 +12,7 @@
     "BoxFactory": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7164;http://localhost:5290",
+      "applicationUrl": "http://localhost:16544",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
