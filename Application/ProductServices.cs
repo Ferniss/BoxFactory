@@ -1,18 +1,21 @@
-﻿using Application.Interfaces;
+﻿using Application.DOTs;
+using Application.Interfaces;
+using AutoMapper;
 using Domain;
+using FluentValidation;
 
 namespace Application;
 
 public class ProductService : IProductService
 {
     private readonly IProductRepository _productRepository;
-    private readonly IValidator<PostProductDTO> _postValidator;
+    private readonly IValidator<ProductDTOs.PostProductDTO> _postValidator;
     private readonly IValidator<Product> _productValidator;
     private readonly IMapper _mapper;
 
     public ProductService(
         IProductRepository repository,
-        IValidator<PostProductDTO> postValidator,
+        IValidator<ProductDTOs.PostProductDTO> postValidator,
         IValidator<Product> productValidator,
         IMapper mapper)
     {

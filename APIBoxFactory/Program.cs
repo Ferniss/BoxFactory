@@ -14,18 +14,14 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 
-builder.Services.AddDbContext<ProductDbContext>(options => options.UseSqlite(
-    "Data source=db.db"
-));
-
-
-Application.DependencyResolver
+MediaTypeNames.Application.DependencyResolver
     .DependencyResolverService
     .RegisterApplicationLayer(builder.Services);
 
 Infrastructure.DependencyResolver
     .DependencyResolverService
     .RegisterInfrastructure(builder.Services);
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
