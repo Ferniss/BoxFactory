@@ -1,4 +1,8 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using System.Net.Mime;
+using Infrastructure;
+using Microsoft.EntityFrameworkCore;
+
+var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
@@ -9,9 +13,19 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+
 builder.Services.AddDbContext<ProductDbContext>(options => options.UseSqlite(
     "Data source=db.db"
-    ));
+));
+
+
+MediaTypeNames.Application.DependencyResolver
+    .DependencyResolverService
+    .RegisterApplicationLayer(builder.Services);
+
+Infrastructure.DependencyResolver
+    .DependencyResolverService
+    .RegisterInfrastructure(builder.Services);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
