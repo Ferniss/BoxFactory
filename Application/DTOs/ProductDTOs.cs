@@ -1,4 +1,4 @@
-namespace Application.DOTs;
+namespace Application.DTOs;
 
 public class ProductDTOs
 {
