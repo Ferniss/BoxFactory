@@ -1,16 +1,19 @@
-﻿using Domain;
+﻿using Application.DTOs;
+using AutoMapper;
+using Domain;
+using Domain.Interfaces;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BoxFactory.Controllers;
+namespace API.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class ProdcutController : ControllerBase
+public class ProductController : ControllerBase
 {
     private IProductService _productService;
 
-    public ProdcutController(IProductService productService)
+    public ProductController(IProductService productService)
     {
         _productService = productService;
     }
@@ -21,23 +24,29 @@ public class ProdcutController : ControllerBase
         return _productService.GetAllProducts();
     }
 
-    [HttpPost]
-    [Route("")]
-    public ActionResult<Product> CreateNewProduct(PostProductDTO dto)
+    [HttpGet]
+    [Route("{id}")] //localhost:5001/product/42
+    public ActionResult<Product> GetProductById(int id)
     {
         try
         {
-            var result = _productService.CreateNewProduct(dto);
-            return Created("", result);
+            return _productService.GetProductById(id);
         }
-        catch (ValidationException v)
+        catch (KeyNotFoundException e)
         {
-            return BadRequest(v.Message);
+            return NotFound("No product found at ID " + id);
         }
-        catch (System.Exception e)
+        catch (Exception e)
         {
-            return StatusCode(500, e.Message);
+            return StatusCode(500, e.ToString());
         }
     }
-}
 
+
+    [HttpGet]
+    [Route("RebuildDB")]
+    public void RebuildDB()
+    {
+        _productService.RebuildDB();
+    }
+}
