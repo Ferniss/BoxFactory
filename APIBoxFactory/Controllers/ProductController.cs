@@ -6,11 +6,11 @@ namespace BoxFactory.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class WeatherForecastController : ControllerBase
+public class ProdcutController : ControllerBase
 {
     private IProductService _productService;
 
-    public ProductController(IProductService productService)
+    public ProdcutController(IProductService productService)
     {
         _productService = productService;
     }
