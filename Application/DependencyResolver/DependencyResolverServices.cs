@@ -1,3 +1,4 @@
+using Domain.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Application.DependencyResolver;
