@@ -3,19 +3,26 @@ using Domain;
 
 namespace Infrastructure;
 
-internal class ProductRepository : IProductRepository
+public class ProductRepository : IProductRepository
 {
 
-    private readonly ProductDbContext _context;
-
+    private readonly ProductDbContext _context; 
+    
     public ProductRepository(ProductDbContext context)
     {
         _context = context;
     }
-
+    
     public List<Product> GetAllProducts()
     {
         return _context.ProductTable.ToList();
+    }
+
+    public Product CreateNewProduct(Product product)
+    {
+        _context.ProductTable.Add(product);
+        _context.SaveChanges();
+        return product;
     }
 
     public Product GetProductById(int id)
@@ -28,6 +35,7 @@ internal class ProductRepository : IProductRepository
         _context.Database.EnsureDeleted();
         _context.Database.EnsureCreated();
     }
+    
     public Product UpdateProduct(Product product)
     {
         _context.ProductTable.Update(product);
