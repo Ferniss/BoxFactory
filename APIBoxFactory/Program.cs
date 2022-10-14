@@ -1,20 +1,34 @@
 ﻿using System.Net.Mime;
+using AutoMapper;
+using Domain;
 using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+Console.WriteLine("initializing");
+
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
+builder.Services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
 
 
-MediaTypeNames.Application.DependencyResolver
+var mapper = new MapperConfiguration(configuration =>
+{
+    configuration.CreateMap<PostProductDTO, Product>();
+}).CreateMapper();
+builder.Services.AddSingleton(mapper);
+
+builder.Services.AddDbContext<ProductDbContext>(options => options.UseSqlite(
+    "Data source=db.db"
+));
+
+
+Application.DependencyResolver
     .DependencyResolverService
     .RegisterApplicationLayer(builder.Services);
 
@@ -22,12 +36,20 @@ Infrastructure.DependencyResolver
     .DependencyResolverService
     .RegisterInfrastructure(builder.Services);
 
+builder.Services.AddCors();
+
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseCors(options => {
+        options.AllowAnyOrigin();
+        options.AllowAnyHeader();
+        options.AllowAnyMethod();
+    });
 }
 
 app.UseHttpsRedirection();
