@@ -1,21 +1,26 @@
-﻿using Application.DTOs;
+﻿using System.ComponentModel.DataAnnotations;
+using Application.DTOs;
 using Application.Interfaces;
 using AutoMapper;
 using Domain;
+using Domain.Interfaces;
 using FluentValidation;
+using static Application.DTOs.ProductDTOs;
+using ValidationException = FluentValidation.ValidationException;
 
 namespace Application;
 
 public class ProductService : IProductService
 {
     private readonly IProductRepository _productRepository;
-    private readonly IValidator<ProductDTOs.PostProductDTO> _postValidator;
+    private readonly IValidator<PostProductDTO> _postValidator;
     private readonly IValidator<Product> _productValidator;
     private readonly IMapper _mapper;
 
+
     public ProductService(
         IProductRepository repository,
-        IValidator<ProductDTOs.PostProductDTO> postValidator,
+        IValidator<PostProductDTO> postValidator,
         IValidator<Product> productValidator,
         IMapper mapper)
     {
@@ -39,4 +44,5 @@ public class ProductService : IProductService
     {
         _productRepository.RebuildDB();
     }
+
 }
