@@ -1,6 +1,7 @@
 ﻿using System.Net.Mime;
 using AutoMapper;
 using Domain;
+using FluentValidation;
 using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,13 +29,9 @@ builder.Services.AddDbContext<ProductDbContext>(options => options.UseSqlite(
 ));
 
 
-Application.DependencyResolver
-    .DependencyResolverService
-    .RegisterApplicationLayer(builder.Services);
+MediaTypeNames.Application.DependencyResolver.DependencyResolverService.RegisterApplicationLayer(builder.Services);
 
-Infrastructure.DependencyResolver
-    .DependencyResolverService
-    .RegisterInfrastructure(builder.Services);
+Infrastructure.DependencyResolver.DependencyResolverService.RegisterInfrastructure(builder.Services);
 
 builder.Services.AddCors();
 
