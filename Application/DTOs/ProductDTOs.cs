@@ -1,17 +1,14 @@
 namespace Application.DTOs;
 
-public class ProductDTOs
+public class PostProductDTO
 {
-    public class PostProductDTO
-    {
-        public int Price { get; set; }
-        public string Name { get; set; }
-    }
+    //public int Price { get; set; }
+    public string Name { get; set; }
+}
 
-    public class PartialUpdateProductDTO
-    {
-        public int? Price { get; set; }
-        public string? Name { get; set; }
-        public int Id { get; set; }
-    }
+public class PartialUpdateProductDTO
+{
+    //public int? Price { get; set; }
+    public string? Name { get; set; }
+    public int Id { get; set; }
 }
