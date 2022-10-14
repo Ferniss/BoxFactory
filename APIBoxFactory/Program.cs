@@ -1,5 +1,4 @@
-﻿using System.Net.Mime;
-using Application.DTOs;
+﻿using Application.DTOs;
 using AutoMapper;
 using Domain;
 using FluentValidation;

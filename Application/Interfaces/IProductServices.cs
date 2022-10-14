@@ -1,6 +1,4 @@
 using Application.DTOs;
-using static Application.DTOs.ProductDTOs;
-
 namespace Domain.Interfaces;
 
 public interface IProductService
