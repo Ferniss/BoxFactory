@@ -1,3 +1,4 @@
+using System.Data;
 using Application.DTOs;
 using Domain;
 using FluentValidation;
@@ -10,6 +11,7 @@ public class PostProductValidator : AbstractValidator<PostProductDTO>
     {
         RuleFor(p => p.Price).GreaterThan(0);
         RuleFor(p => p.Name).NotEmpty();
+        RuleFor(p => p.Description).NotEmpty();
     }
 }
 
@@ -19,6 +21,18 @@ public class ProductValidator : AbstractValidator<Product>
     {
         RuleFor(p => p.Price).GreaterThan(0);
         RuleFor(p => p.Name).NotEmpty();
+        RuleFor(p => p.Id).GreaterThan(0);
+        RuleFor(p => p.Description).NotEmpty();
+    }
+}
+
+public class PutProductValidator : AbstractValidator<PutProductDTO>
+{
+    public PutProductValidator()
+    {
+        RuleFor(p => p.Price).GreaterThan(0);
+        RuleFor(p => p.Name).NotEmpty();
+        RuleFor(p => p.Description).NotEmpty();
         RuleFor(p => p.Id).GreaterThan(0);
     }
 }

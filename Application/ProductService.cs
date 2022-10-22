@@ -54,6 +54,8 @@ public class ProductService : IProductService
         _productRepository.RebuildDB();
     }
 
+    
+    
     public Product UpdateProduct(int id, Product product)
     {
         if (id != product.Id)
@@ -64,6 +66,9 @@ public class ProductService : IProductService
         return _productRepository.UpdateProduct(product);
 
     }
+    
+    
+    
 
     public Product DeleteProduct(int id)
     {
