@@ -69,11 +69,11 @@ public class ProductController : ControllerBase
 
     [HttpPut]
     [Route("{id}")] 
-    public ActionResult<Product> UpdateProduct([FromRoute]int id, [FromBody]Product product)
+    public ActionResult<Product> PutProduct([FromRoute]int id, [FromBody]Product product)
     {
         try
         {
-            return Ok(_productService.UpdateProduct(id, product));
+            return Ok(_productService.PutProduct(id, product));
         } catch (KeyNotFoundException e) 
         {
             return NotFound("No product found at ID " + id);

@@ -9,7 +9,7 @@ public interface IProductRepository
     public Product CreateNewProduct(Product product);
     public Product GetProductById(int id);
     public void RebuildDB();
-    public Product UpdateProduct(Product product);
+    public Product PutProduct(Product product);
     public Product DeleteProduct(int id);
    
 }

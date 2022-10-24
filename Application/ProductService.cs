@@ -56,14 +56,14 @@ public class ProductService : IProductService
 
     
     
-    public Product UpdateProduct(int id, Product product)
+    public Product PutProduct(int id, Product product)
     {
         if (id != product.Id)
             throw new ValidationException("ID in body and route are different");
         var validation = _productValidator.Validate(product);
         if (!validation.IsValid)
             throw new ValidationException(validation.ToString());
-        return _productRepository.UpdateProduct(product);
+        return _productRepository.PutProduct(product);
 
     }
     

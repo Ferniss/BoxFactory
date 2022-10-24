@@ -7,6 +7,6 @@ public interface IProductService
     public Product CreateNewProduct(PostProductDTO dto);
     public Product GetProductById(int id);
     public void RebuildDB();
-    public Product UpdateProduct(int id, Product product);
+    public Product PutProduct(int id, Product product);
     public Product DeleteProduct(int id);
 }
