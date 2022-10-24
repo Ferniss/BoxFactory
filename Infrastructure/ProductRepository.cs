@@ -36,13 +36,20 @@ public class ProductRepository : IProductRepository
         _context.Database.EnsureCreated();
     }
     
-    public Product PutUpdateProduct(Product product)
+    public Product PutProduct(Product product)
     {
         _context.ProductTable.Update(product);
         _context.SaveChanges();
         return product;
     }
-    
+
+    public Product PatchProduct(Product product)
+    {
+        _context.ProductTable.Update(product);
+        _context.SaveChanges();
+        return product;
+    }
+
 
     public Product DeleteProduct(int id)
     {

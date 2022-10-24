@@ -10,6 +10,7 @@ public interface IProductRepository
     public Product GetProductById(int id);
     public void RebuildDB();
     public Product PutProduct(Product product);
+    public Product PatchProduct(Product product);
     public Product DeleteProduct(int id);
    
 }

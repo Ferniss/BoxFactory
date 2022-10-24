@@ -8,5 +8,6 @@ public interface IProductService
     public Product GetProductById(int id);
     public void RebuildDB();
     public Product PutProduct(int id, Product product);
+    public Product PatchProduct(int id, Product product);
     public Product DeleteProduct(int id);
 }

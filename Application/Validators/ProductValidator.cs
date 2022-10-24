@@ -36,3 +36,14 @@ public class PutProductValidator : AbstractValidator<PutProductDTO>
         RuleFor(p => p.Id).GreaterThan(0);
     }
 }
+
+public class PatchProductValidator : AbstractValidator<PatchProductDTO>
+{
+    public PatchProductValidator()
+    {
+        RuleFor(p => p.Price).GreaterThan(0);
+        RuleFor(p => p.Name).NotEmpty();
+        RuleFor(p => p.Description).NotEmpty();
+        RuleFor(p => p.Id).GreaterThan(0);
+    }
+}

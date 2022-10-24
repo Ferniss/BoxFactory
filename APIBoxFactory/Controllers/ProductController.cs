@@ -83,6 +83,23 @@ public class ProductController : ControllerBase
         }
     }
 
+    [HttpPatch]
+    [Route("{id}")]
+    public ActionResult<Product> PatchProduct([FromRoute] int id, [FromBody] Product product)
+    {
+        try
+        {
+            return Ok(_productService.PatchProduct(id, product));
+        }
+        catch (KeyNotFoundException e)
+        {
+            return NotFound("No product found at ID " + id);
+        }
+        catch (Exception e)
+        {
+            return StatusCode(500, e.ToString());
+        }
+    }
 
 
     [HttpDelete]
