@@ -47,7 +47,7 @@ export class AppComponent implements OnInit {
     this.products = this.products.filter(p => p.id != product.id)
   }
 
-  async updateBox(dto: {id: any, productName: any, productPrice: any, productDescription: any}, id:number){
+  async updateProduct(dto: { id: any; productName: any; productPrice: any; productDescription: any }){
     const httpResult = await customAxios.put("")
   }
 }
