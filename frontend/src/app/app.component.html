@@ -40,6 +40,40 @@
   </div>
 
 
+  <div style="border-style: groove;border-color: brown; padding: 20px; border-width: 0.5px" class="" *ngIf="editName">
+    <mat-form-field color="primary">
+      <!-- we write something inside of this input field, we get the value of the indputfiled as the productName -->
+      <div class="d-flex align-items-start">
+
+        <input matInput [(ngModel)]="editName" name="productName">
+      </div>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field style="">
+      <!-- because the price is number -->
+      <input type="number" matInput [(ngModel)]="editPrice">
+    </mat-form-field>
+    <br>
+
+    <mat-form-field style="width: 100%; " color="primary">
+      <!-- we write something inside of this input field, we get the value of the indputfiled as the productName -->
+      <input matInput [(ngModel)]="productDescription">
+    </mat-form-field>
+    <br>
+
+    <!-- if the product price is less than 1 and product name is empty string, then we have a disabled button
+  <button [disabled]="productName=='' || productPrice<1" mat-raised-button (click)="createProduct()">Click me</button>-->
+
+    <button style="padding: 10px 30px 10px 30px" (click)="createProduct()"
+            type="button"
+            class="btn btn-outline-primary"
+            ngbPopover="Add a box"
+            triggers="mouseenter:mouseleave"
+    >Edit a box
+    </button>
+  </div>
+
   <!-- we make a variable to loop our product -->
   <mat-card class="cardClass" style="margin-top:30px;" *ngFor="let p of products">
     <mat-card-title style="color: #262626;">{{p.name}}</mat-card-title>
@@ -74,7 +108,7 @@
       </div>
 
       <div class="mx-lg-3">
-        <button style="margin-top: 30px" (click)="updateProduct(p.id)"
+        <button style="margin-top: 30px" (click)="triggerEdit(p.name, p.price, p.description)"
                 type="button"
                 class="btn btn btn-outline-secondary"
                 ngbPopover="Update this box"

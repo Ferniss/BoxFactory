@@ -19,6 +19,9 @@ export class AppComponent implements OnInit {
   productDescription: string = "";
   products: any[] = [];
   faBoxOpen = faBoxOpen;
+  editName: string = "";
+  editPrice: number = 0;
+  editDescription: string = "";
 
 
   constructor(private http: HttpService) {
@@ -49,6 +52,13 @@ export class AppComponent implements OnInit {
 
   async updateProduct(dto: { id: any; productName: any; productPrice: any; productDescription: any }){
     const httpResult = await customAxios.put("")
+    console.log(httpResult.data);
+  }
+
+  async triggerEdit(name: string, price: number, description: string){
+    this.editName = name
+    this.editPrice = price
+    this.editDescription = description
   }
 }
 
