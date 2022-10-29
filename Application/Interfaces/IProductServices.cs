@@ -3,6 +3,7 @@ namespace Domain.Interfaces;
 
 public interface IProductService
 {
+    // all api methods from Interface class
     public List<Product> GetAllProducts();
     public Product CreateNewProduct(PostProductDTO dto);
     public Product GetProductById(int id);
