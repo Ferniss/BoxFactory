@@ -18,12 +18,14 @@ public class ProductController : ControllerBase
         _productService = productService;
     }
 
+    // get all product
     [HttpGet]
     public ActionResult<List<Product>> GetAllProducts()
     {
         return _productService.GetAllProducts();
     }
 
+    // creating new product
     [HttpPost]
     [Route("")]
     public ActionResult<Product> CreateNewProduct(PostProductDTO dto)
@@ -58,8 +60,9 @@ public class ProductController : ControllerBase
             return StatusCode(500, e.ToString());
         }
     }
-    
 
+
+    // rebuilding
     [HttpGet]
     [Route("RebuildDB")]
     public void RebuildDB()
@@ -67,6 +70,7 @@ public class ProductController : ControllerBase
         _productService.RebuildDB();
     }
 
+    // updating with id
     [HttpPut]
     [Route("{id}")] 
     public ActionResult<Product> PutProduct([FromRoute]int id, [FromBody]Product product)
@@ -83,6 +87,7 @@ public class ProductController : ControllerBase
         }
     }
 
+    // updating with id
     [HttpPatch]
     [Route("{id}")]
     public ActionResult<Product> PatchProduct([FromRoute] int id, [FromBody] Product product)
@@ -101,7 +106,7 @@ public class ProductController : ControllerBase
         }
     }
 
-
+    // deleting with id
     [HttpDelete]
     [Route("{id}")]
     public ActionResult<Product> DeleteProduct(int id)
