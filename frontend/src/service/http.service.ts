@@ -45,11 +45,11 @@ export class HttpService {
   async deleteProduct(id: any) {
     const httpsResult = await customAxios.delete('product/'+id);
     return httpsResult.data;
-
   }
 
-  async updateProduct(dto: { price: number; name: string; description:string}) {
-    const httpsResult = await customAxios.put("product", dto)
+
+  async updateProduct(id: any, dto: {price: number; name: string}) {
+    const httpsResult = await customAxios.put('product/'+id, dto);
     return httpsResult.data;
   }
 }

@@ -13,6 +13,7 @@ export class BoxComponent implements OnInit {
   productDescription: string = "";
   products: any[] = [];
   faBoxOpen = faBoxOpen;
+
   editName: string = "";
   editPrice: number = 0;
   editDescription: string = "";
