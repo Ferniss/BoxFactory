@@ -45,10 +45,6 @@ export class BoxComponent implements OnInit {
     this.products = this.products.filter(p => p.id != product.id)
   }
 
-  async updateProduct(dto: { id: any; productName: any; productPrice: any; productDescription: any }){
-    const httpResult = await customAxios.put("")
-    console.log(httpResult.data);
-  }
 
   async triggerEdit(name: string, price: number, description: string){
     this.editName = name
